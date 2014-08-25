@@ -49,10 +49,21 @@ class MY_Model extends CI_Model{
 
 		else
 
-			$limit != NULL ? $this->limit($limit,$offset) : '';
+			$limit != NULL ? $this->db->limit($limit,$offset) : '';
 			return $this->db->get($table_name)->result();
 	}
 
+	/**
+	* @access	public
+	* @param	string
+	* @param	array/string/null
+	*/
+	public function get_count($table_name,$where=NULL)
+	{
+        ($where !== NULL) ? $this->db->where($where) : '';
+        $this->db->from($table_name);
+        return $this->db->count_all_results();
+	}
 
 	/**
 	* Select data from database using the given parameters with select features.
@@ -79,7 +90,7 @@ class MY_Model extends CI_Model{
 		
 		else
 
-			$limit != NULL ? $this->limit($limit,$offset) : '';
+			$limit != NULL ? $this->db->limit($limit,$offset) : '';
 			return $this->db->get($table_name)->result();
 	}
 	

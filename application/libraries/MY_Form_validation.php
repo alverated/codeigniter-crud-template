@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MY_Form_validation extends CI_Form_validation {
+/*class MY_Form_validation extends CI_Form_validation {
 
 	 // Custom max length
 	function max_length($str, $val){
@@ -19,7 +19,7 @@ class MY_Form_validation extends CI_Form_validation {
 			return true;
 	} 
 
-}
+}*/
 
 /* End of file MY_Form_validation.php */
 /* Location: ./application/libraries/MY_Form_validation.php */
