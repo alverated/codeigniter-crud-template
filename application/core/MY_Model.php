@@ -33,15 +33,18 @@ class MY_Model extends CI_Model{
 	* @param	array/string/null
 	* @param	bool
 	* @param	array/string/null
+	* @param	array/string/null
 	* @param	integer/null
 	* @param	integer
 	* @return	object_array/array
 	*/
-	public function get($table_name,$where=NULL,$single=FALSE,$order_by=NULL,$limit=NULL,$offset=0)
+	public function get($table_name,$where=NULL,$single=FALSE,$order_by=NULL,$group_by=NULL,$limit=NULL,$offset=0)
 	{
 		($where !== NULL) ? $this->db->where($where) : '';
 
 		($order_by !== NULL) ? $this->db->order_by($order_by) : '';
+
+		($group_by !== NULL) ? $this->db->group_by($group_by) : '';
 
 		if($single == TRUE)
 
@@ -74,15 +77,20 @@ class MY_Model extends CI_Model{
 	* @param	string
 	* @param	bool
 	* @param	array/string
+	* @param	array/string
+	* @param	integer
+	* @param	integer
 	* @return	object_array/array
 	*/
-	public function get_select($table_name,$where=NULL,$select=NULL,$single=FALSE,$order_by=NULL,$limit=NULL,$offset=0)
+	public function get_select($table_name,$where=NULL,$select=NULL,$single=FALSE,$order_by=NULL,$group_by=NULL,$limit=NULL,$offset=0)
 	{
 		($select !== NULL) ? $this->db->select($select) : '';
 
 		($where !== NULL) ? $this->db->where($where) : '';
 
 		($order_by !== NULL) ? $this->db->order_by($order_by) : '';
+
+		($group_by !== NULL) ? $this->db->group_by($group_by) : '';
 		
 		if($single == TRUE)
 
@@ -206,6 +214,53 @@ class MY_Model extends CI_Model{
 		$title = str_replace('_', ' ', $segment1.$segment2);
 		
 		return ucwords($title);
+	}
+
+	/**
+	* Joint Tables
+	*
+	* @access	public
+	* @param	string
+	* @param	string
+	* @param	array
+	* @param	array/multidimentional array
+	* @param	bool
+	* @param	string
+	* @param	string/array
+	* @param	integer
+	* @param	integer
+	* @return	object_array/array
+	*/
+	public function join_table($select="*",$from="",$where=NULL,$join_conditional = array(),$single=FALSE,$order_by=NULL,$group_by=NULL,$limit=NULL,$offset=0){
+		
+		($where !== NULL) ? $this->db->where($where) : '';
+		
+		$this->db->select("*");
+
+		$this->db->from($from);
+
+		foreach ($join_conditional as $tbl => $cond){
+
+			if (is_array($cond)) {
+				foreach ($cond as $_cond => $type) {
+					$this->db->join($tbl,$_cond,$type);
+				}
+			}else{
+				$this->db->join($tbl,$cond);
+			}
+			
+		}
+		
+		($order_by !== NULL) ? $this->db->order_by($order_by) : '';
+
+		($group_by !== NULL) ? $this->db->group_by($group_by) : '';
+
+		if($single == TRUE)
+			return $this->db->limit(1)->get()->row();
+		else
+			$limit != NULL ? $this->db->limit($limit,$offset) : '';
+
+		return $this->db->get()->result();
 	}
 
 
