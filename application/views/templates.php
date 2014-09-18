@@ -13,36 +13,24 @@
 	<?php echo isset($meta_desc) ? '<meta name="description" content="'.$meta_desc.'"/>' : ''; ?>
 	
 	<!-- CSS -->
-	<link rel="icon" href="<?php echo img_url('favicon.ico')?>" type="image/ico">
+	<link rel="icon" href="<?php echo img_url('favicon.jpg')?>" type="image/ico">
 	<link type="text/css" rel="stylesheet" href="<?php echo css_url('normalize.css') ?>"/>
-	<link type="text/css" rel="stylesheet" href="<?php echo css_url('bootstrap.css') ?>"/>
 	<link type="text/css" rel="stylesheet" href="<?php echo css_url('style.css') ?>"/>
 	<?php echo isset($css) ? $css : ''; ?>
 	
 	<!-- Javascript and JQuery -->
-	<script type="text/javascript" src="<?php echo js_url('jquery-1.10.2.js') ?>"></script>
-	<script type="text/javascript" src="<?php echo js_url('bootstrap.min.js') ?>"></script>
+	<script type="text/javascript" src="<?php echo js_url('jquery-1.11.1.js') ?>"></script>
 	<?php echo isset($js_top) ? $js_top : ''; ?>
 
 </head>
 
 <body>
-<div id="wrap">
 
 <?php echo isset($header) ? $header : ''; ?>
 
+<?php echo isset($body) ? $body : ''; ?>
 
-	<div class="container">
-
-		<?php echo isset($body) ? $body : ''; ?>
-
-		<?php echo isset($sidebar) ? $sidebar : ''; ?>
-	
-	</div>
-
-	<div id="push"></div>
-
-</div>
+<?php echo isset($sidebar) ? $sidebar : ''; ?>
 
 <?php echo isset($footer) ? $footer : ''; ?>
 	

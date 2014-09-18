@@ -2,8 +2,6 @@
 
 class Admin_model extends MY_Model {
 
-	
-
 }
 
 /* End of file admin_model.php */

@@ -1,4 +1,1 @@
-	<!-- header -->
-	<div id="header">
-      	
-    </div>
+<!-- Header -->

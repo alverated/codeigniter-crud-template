@@ -5,11 +5,9 @@ class User_Controller extends MY_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
-
+		$this->load->model('user_model');
 		$this->data['meta_title'] = config_item('site_name');
 	}
-
 }
 
 /* End of file User_Controller.php */

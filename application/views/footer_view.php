@@ -1,4 +1,1 @@
-	<!-- footer -->
-	<div id="footer">
-		
-	</div>
+<!-- Footer -->
